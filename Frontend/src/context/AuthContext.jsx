@@ -11,8 +11,9 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        const res = await api.get("/auth/me"); // backend route needed
-        setUser(res.data);
+        // Make sure cookies are sent
+        const res = await api.get("/auth/me", { withCredentials: true });
+        setUser(res.data); // restore user state
       } catch {
         setUser(null);
       } finally {
