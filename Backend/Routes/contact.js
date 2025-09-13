@@ -5,7 +5,7 @@ const auth = require("../middleware/auth");
 
 
 // Add contact message - public
-router.post("/", async (req, res) => {
+router.post("/",auth, async (req, res) => {
    const {name , email , message} = req.body;
   try {
     const contact = new Contact({
