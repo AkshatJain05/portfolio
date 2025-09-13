@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import api from "../../utils/axios";
+import axios from "axios";
 import { useAuth } from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import Loading from "../../components/Loading";
@@ -13,16 +13,22 @@ export default function AdminDashboard() {
   const { user, loading, setUser } = useAuth();
   const navigate = useNavigate();
 
+  const BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:8000/api";
+
   const fetchData = async () => {
     try {
       setDataLoading(true);
-      const resProjects = await api.get("/projects");
+
+      // Fetch projects
+      const resProjects = await axios.get(`${BASE_URL}/projects`, { withCredentials: true });
       setProjects(resProjects.data);
 
-      const resContacts = await api.get("/contacts",{withCredentials: true});
+      // Fetch contacts (admin only)
+      const resContacts = await axios.get(`${BASE_URL}/contacts`, { withCredentials: true });
       setContacts(resContacts.data);
+
     } catch (err) {
-      console.error(err);
+      console.error(err.response?.data || err);
     } finally {
       setDataLoading(false);
     }
@@ -35,23 +41,35 @@ export default function AdminDashboard() {
 
   const addProject = async (e) => {
     e.preventDefault();
-    await api.post("/projects/add-project", newProject);
-    setNewProject({ title: "", description: "", codeLink: "", projectLink: "" });
-    fetchData();
+    try {
+      await axios.post(`${BASE_URL}/projects/add-project`, newProject, { withCredentials: true });
+      setNewProject({ title: "", description: "", codeLink: "", projectLink: "" });
+      fetchData();
+    } catch (err) {
+      console.error(err.response?.data || err);
+    }
   };
 
   const deleteProject = async (id) => {
-    await api.delete(`/projects/delete/${id}`);
-    fetchData();
+    try {
+      await axios.delete(`${BASE_URL}/projects/delete/${id}`, { withCredentials: true });
+      fetchData();
+    } catch (err) {
+      console.error(err.response?.data || err);
+    }
   };
 
   const logout = async () => {
-    await api.post("/auth/logout");
-    setUser(null);
-    navigate("/admin/login");
+    try {
+      await axios.post(`${BASE_URL}/auth/logout`, {}, { withCredentials: true });
+      setUser(null);
+      navigate("/admin/login");
+    } catch (err) {
+      console.error(err.response?.data || err);
+    }
   };
 
-  if (dataLoading) return <Loading />;  // ⬅️ Show loader while fetching
+  if (dataLoading) return <Loading />;
 
   return (
     <div className="min-h-screen bg-gray-900 text-white p-6">
@@ -60,7 +78,7 @@ export default function AdminDashboard() {
         <button onClick={logout} className="bg-red-600 px-4 py-2 rounded cursor-pointer">Logout</button>
       </div>
 
-      {/* Add Project */}
+      {/* Add Project Form */}
       <form onSubmit={addProject} className="bg-gray-800 p-6 mt-6 rounded-xl flex flex-col gap-3 max-w-lg">
         <input className="p-3 rounded bg-gray-700" placeholder="Title"
           value={newProject.title} onChange={(e) => setNewProject({ ...newProject, title: e.target.value })} />
