@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import Navbar from "../../components/NavBar";
+import Navbar from "../../components/Navbar";
 import Hero from "./Hero";
 import About from "./About";
 import Skill from "./Skill";
