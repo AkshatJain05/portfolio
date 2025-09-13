@@ -1,9 +1,7 @@
 const express = require("express");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
-const bodyParser = require("body-parser");
 require("dotenv").config();
-
 const connectDB = require("./Config/db");
 
 // Routes
@@ -18,11 +16,11 @@ const app = express();
 
 // Middleware
 app.use(cors({
-  origin: ["https://akshat-portfoliopro.vercel.app","http://localhost:5173"], // frontend origin
+  origin: ["https://akshat-portfoliopro.vercel.app", "http://localhost:5173"], // frontend URLs
   credentials: true, // allow cookies
 }));
 app.use(cookieParser());
-app.use(bodyParser.json());
+app.use(express.json()); // parse JSON
 
 // Routes
 app.use("/api/auth", authRoutes);
@@ -35,5 +33,5 @@ app.get("/", (req, res) => {
 });
 
 // Start server
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 8000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
