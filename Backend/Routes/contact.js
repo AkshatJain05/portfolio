@@ -21,7 +21,7 @@ router.post("/", async (req, res) => {
 });
 
 // Get all contacts - admin only
-router.get("/", auth, async (req, res) => {
+router.get("/", async (req, res) => {
   try {
     const contacts = await Contact.find();
     res.json(contacts);
