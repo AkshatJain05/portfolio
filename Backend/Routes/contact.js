@@ -5,7 +5,7 @@ const auth = require("../middleware/auth");
 
 
 // Add contact message - public
-router.post("/",auth, async (req, res) => {
+router.post("/", async (req, res) => {
    const {name , email , message} = req.body;
   try {
     const contact = new Contact({
@@ -21,7 +21,7 @@ router.post("/",auth, async (req, res) => {
 });
 
 // Get all contacts - admin only
-router.get("/", async (req, res) => {
+router.get("/",auth, async (req, res) => {
   try {
     const contacts = await Contact.find();
     res.json(contacts);
