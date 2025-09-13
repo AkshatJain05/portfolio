@@ -18,7 +18,7 @@ const app = express();
 
 // Middleware
 app.use(cors({
-  origin: ["https://portfolio-akshatjain05s-projects.vercel.app","http://localhost:5173"], // frontend origin
+  origin: ["https://akshat-portfoliopro.vercel.app","http://localhost:5173"], // frontend origin
   credentials: true, // allow cookies
 }));
 app.use(cookieParser());
