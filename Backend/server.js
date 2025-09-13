@@ -16,8 +16,8 @@ const app = express();
 
 // Middleware
 app.use(cors({
-  origin: ["https://akshat-portfoliopro.vercel.app", "http://localhost:5173"], // frontend URLs
-  credentials: true, // allow cookies
+  origin: ["https://akshat-portfoliopro.vercel.app", "http://localhost:5173"], // exact frontend URLs
+  credentials: true, // ✅ allow cookies
 }));
 app.use(cookieParser());
 app.use(express.json()); // parse JSON
