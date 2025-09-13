@@ -19,7 +19,7 @@ export default function AdminDashboard() {
       const resProjects = await api.get("/projects");
       setProjects(resProjects.data);
 
-      const resContacts = await api.get("/contacts");
+      const resContacts = await api.get("/contacts",{withCredentials: true});
       setContacts(resContacts.data);
     } catch (err) {
       console.error(err);
