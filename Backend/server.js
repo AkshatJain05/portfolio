@@ -8,6 +8,22 @@ import connectDB from "./Config/db.js";
 
 dotenv.config();
 
+const app = express();
+
+app.use(cookieParser());
+app.use(express.json()); //  parse JSON requests
+// ================== Middleware ==================
+app.use(
+  cors({
+    origin: [
+      "https://akshat-portfoliopro.vercel.app",
+      "http://localhost:5173",
+      "https://portfolio-akshat.onrender.com",
+    ], //  allow only your frontend URLs
+    credentials: true, // allow cookies
+  })
+);
+
 // Routes
 import authRoutes from "./Routes/auth.js";
 import projectRoutes from "./Routes/projects.js";
@@ -15,23 +31,6 @@ import contactRoutes from "./Routes/contact.js";
 
 // Connect to MongoDB
 connectDB();
-
-const app = express();
-
-// ================== Middleware ==================
-app.use(
-  cors({
-    origin: [
-      "https://akshat-portfoliopro.vercel.app",
-      "http://localhost:5173",
-      "https://portfolio-akshat.onrender.com"
-    ], //  allow only your frontend URLs
-    credentials: true, // allow cookies
-  })
-);
-
-app.use(cookieParser());
-app.use(express.json()); //  parse JSON requests
 
 // ================== Routes ==================
 app.use("/api/auth", authRoutes);
@@ -45,6 +44,4 @@ app.get("/", (_req, res) => {
 
 // ================== Start server ==================
 const PORT = process.env.PORT || 8000;
-app.listen(PORT, () =>
-  console.log(` Server running on port ${PORT}`)
-);
+app.listen(PORT, () => console.log(` Server running on port ${PORT}`));
