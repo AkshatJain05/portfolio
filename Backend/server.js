@@ -24,6 +24,7 @@ app.use(
     origin: [
       "https://akshat-portfoliopro.vercel.app",
       "http://localhost:5173",
+      "https://portfolio-wefm.onrender.com"
     ], //  allow only your frontend URLs
     credentials: true, // allow cookies
   })
