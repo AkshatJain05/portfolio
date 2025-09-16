@@ -2,17 +2,19 @@ import ProjectCard from "../components/ProjectCard"
 import { Link } from "react-router-dom";
 import { FaHome} from "react-icons/fa"; // react-icons
 import { useState } from "react";
-import api from "../utils/axios";
+// import api from "../utils/axios";
 import { useEffect } from "react";
 import Loading from "../components/Loading";
-
+import axios from "axios";
 // Projects Page
 const Projects = () => {
   const [projects,setProjects] = useState([]);
   const [loading,setLoading] = useState(true);
 
+  const API = import.meta.env.VITE_API_URL || "http://localhost:8000/api"
+   
   useEffect(() =>{
-    api.get("/projects").then((res) =>{
+    axios.get(`${API}/projects`).then((res) =>{
       setProjects(res.data);
       setLoading(false)
     }).catch((err)=>{
