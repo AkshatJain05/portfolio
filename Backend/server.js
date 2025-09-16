@@ -24,7 +24,7 @@ app.use(
     origin: [
       "https://akshat-portfoliopro.vercel.app",
       "http://localhost:5173",
-      "https://portfolio-wefm.onrender.com"
+      "https://portfolio-akshat.onrender.com/"
     ], //  allow only your frontend URLs
     credentials: true, // allow cookies
   })
@@ -40,7 +40,7 @@ app.use("/api/contacts", contactRoutes);
 
 // Default route
 app.get("/", (_req, res) => {
-  res.send("Portfolio backend is running 🚀");
+  res.send("Portfolio backend is running ");
 });
 
 // ================== Start server ==================
