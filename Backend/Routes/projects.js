@@ -1,8 +1,10 @@
-const express = require("express");
-const router = express.Router();
-const Project = require("../Models/ProjectModel");
-const auth = require("../middleware/auth");   // checks JWT in cookie
+// routes/projectRoutes.js
 
+import express from "express";
+import Project from "../Models/ProjectModel.js";
+import auth from "../middleware/auth.js";
+
+const router = express.Router();
 
 // ==================== Add Project ====================
 router.post("/add-project", auth, async (req, res) => {
@@ -45,4 +47,4 @@ router.delete("/delete/:id", auth, async (req, res) => {
   }
 });
 
-module.exports = router;
+export default router;

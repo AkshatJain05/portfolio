@@ -1,8 +1,12 @@
-const jwt = require("jsonwebtoken");
+// middleware/auth.js
+
+import jwt from "jsonwebtoken";
 
 function auth(req, res, next) {
-  const token = req.cookies.token;
-  if (!token) return res.status(401).json({ error: "No token, authorization denied" });
+  const token = req.cookies?.token;
+  if (!token) {
+    return res.status(401).json({ error: "No token, authorization denied" });
+  }
 
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
@@ -13,4 +17,4 @@ function auth(req, res, next) {
   }
 }
 
-module.exports = auth;
+export default auth;

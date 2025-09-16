@@ -1,23 +1,26 @@
-const express = require("express");
-const cookieParser = require("cookie-parser");
-const cors = require("cors");
-require("dotenv").config();
-const connectDB = require("./Config/db");
+import express from "express";
+import cookieParser from "cookie-parser";
+import cors from "cors";
+import dotenv from "dotenv";
+import connectDB from "./Config/db.js";
+
+
+dotenv.config();
 
 // Routes
-const authRoutes = require("./Routes/auth");
-const projectRoutes = require("./Routes/projects");
-const contactRoutes = require("./Routes/contact");
+import authRoutes from "./Routes/auth.js";
+import projectRoutes from "./Routes/projects.js";
+import contactRoutes from "./Routes/contact.js";
 
 // Connect to MongoDB
 connectDB();
-
+  
 const app = express();
 
 // Middleware
 app.use(cors({
-  origin: ["http://localhost:5174","https://akshat-portfoliopro.vercel.app"], // exact frontend URLs
-  credentials: true, // ✅ allow cookies
+  origin: ["http://localhost:5173","https://akshat-portfoliopro.vercel.app"], // exact frontend URLs
+  credentials: true, // allow cookies
 }));
 app.use(cookieParser());
 app.use(express.json()); // parse JSON
@@ -25,10 +28,10 @@ app.use(express.json()); // parse JSON
 // Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/projects", projectRoutes);
-app.use("/api/contacts", contactRoutes);
+app.use("/api/contacts", contactRoutes);  
 
 // Default route
-app.get("/", (req, res) => {
+app.get("/", (_req, res) => {
   res.send("Portfolio backend is running");
 });
 

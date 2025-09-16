@@ -1,17 +1,19 @@
-const express = require("express");
+// routes/contactRoutes.js
+
+import express from "express";
+import Contact from "../Models/ContactModel.js";
+import auth from "../middleware/auth.js";
+
 const router = express.Router();
-const Contact = require("../Models/ContactModel");
-const auth = require("../middleware/auth");
 
-
-// Add contact message - public
+// ==================== Add contact message - public ====================
 router.post("/", async (req, res) => {
-   const {name , email , message} = req.body;
+  const { name, email, message } = req.body;
   try {
     const contact = new Contact({
       name,
       email,
-      message
+      message,
     });
     await contact.save();
     res.status(201).json(contact);
@@ -20,7 +22,7 @@ router.post("/", async (req, res) => {
   }
 });
 
-// Get all contacts - admin only
+// ==================== Get all contacts - admin only ====================
 router.get("/", auth, async (req, res) => {
   try {
     const contacts = await Contact.find();
@@ -30,4 +32,4 @@ router.get("/", auth, async (req, res) => {
   }
 });
 
-module.exports = router;
+export default router;
