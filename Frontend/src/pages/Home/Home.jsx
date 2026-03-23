@@ -52,14 +52,14 @@ const CONTACT_ITEMS = [
     desc: "Best for project inquiries",
   },
   {
-    icon: "💼",
+    icon:<FaLinkedin/>,
     label: "LinkedIn",
     value: "https://linkedin.com/in/akshat-jain-585882383",
     href: "https://linkedin.com/in/akshat-jain-585882383",
     desc: "Let's connect professionally",
   },
   {
-    icon: "🐙",
+    icon: <FaGithub/>,
     label: "GitHub",
     value: "https://github.com/AkshatJain05",
     href: "https://github.com/AkshatJain05",
