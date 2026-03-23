@@ -11,6 +11,7 @@ dotenv.config();
 const app = express();
 
 app.use(cookieParser());
+app.use(express.urlencoded({extended:true}));
 app.use(express.json()); //  parse JSON requests
 // ================== Middleware ==================
 app.use(
