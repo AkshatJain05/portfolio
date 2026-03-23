@@ -22,7 +22,7 @@ function App() {
             <Route path="/admin/dashboard" element={<AdminDashboard/>}/>
           </Routes>
         </main>
-        <Footer />
+        {/* <Footer /> */}
       </div>
     </Router>
   );
