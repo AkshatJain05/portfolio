@@ -161,7 +161,7 @@ export default function Hero() {
           {/* Heading */}
           <motion.h1
             {...fadeUp(0.1)}
-            className="text-[clamp(2.8rem,8vw,4.8rem)] font-bold leading-[1.05] tracking-[-0.035em] text-[#f0eeff] italic mb-3"
+            className="text-[clamp(2.8rem,8vw,4.2rem)] font-bold leading-[1.35] tracking-[-0.035em] text-[#f0eeff] italic mb-3"
             style={{ fontFamily: "sans-serif" }}
           >
             Hi, I'm{" "}

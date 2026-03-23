@@ -6,10 +6,12 @@ import Footer from './components/Footer';
 import NotFound from './pages/NotFound'
 import AdminDashboard from './pages/admin/AdminDashboard';
 import Login from './pages/admin/Login';
+import ScrollToTop from './components/ScrollToTop';
 
 function App() {
   return (
     <Router>
+      <ScrollToTop/>
       <div className="flex flex-col min-h-screen">
         <main className="flex-grow">
           <Routes>

@@ -58,7 +58,7 @@ export default function Navbar() {
           initial={{ opacity: 0, x: -16 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          className="text-[1.8rem] font-bold tracking-tight bg-gradient-to-r from-teal-400 via-emerald-400 to-sky-400 bg-clip-text text-transparent select-none italic"
+          className="text-[1.5rem] font-bold tracking-tight bg-gradient-to-r from-teal-400 via-emerald-400 to-sky-400 bg-clip-text text-transparent select-none italic"
           style={{ fontFamily: " monospace" }}
         >
           {"<Akshat/>"}
